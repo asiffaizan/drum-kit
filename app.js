@@ -2,8 +2,29 @@
 
 document.addEventListener('keypress', (event) => {
 if(event !== null){
-    console.log(event.key);
-    switch (event.key) {
+    playSound(event.key);
+}
+});
+
+
+
+
+// event listener for button click
+
+document.querySelectorAll('.drum').forEach((button)=>{
+    button.addEventListener('click', (e)=>{
+        const key = e.target.innerHTML;
+        playSound(key);
+    })
+})
+
+
+
+
+// root function
+
+function playSound(key){
+    switch (key) {
         case 'w':
             const soundW = new Audio('sounds/tom-1.mp3');
             soundW.play();
@@ -33,17 +54,7 @@ if(event !== null){
             soundL.play();
             break;
         default:
+            console.log(key);
             break;
     }
 }
-});
-
-// event listener for button click
-
-document.querySelectorAll('.drum').forEach((button)=>{
-    button.addEventListener('click', (e)=>{
-        const sound = new Audio(`sounds/${e.target.id}.mp3`);
-        sound.play();
-    })
-})
-
