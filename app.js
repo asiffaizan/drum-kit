@@ -3,6 +3,7 @@
 document.addEventListener('keypress', (event) => {
 if(event !== null){
     playSound(event.key);
+    buttonAnimation(event.key);
 }
 });
 
@@ -15,6 +16,7 @@ document.querySelectorAll('.drum').forEach((button)=>{
     button.addEventListener('click', (e)=>{
         const key = e.target.innerHTML;
         playSound(key);
+        buttonAnimation(key);
     })
 })
 
@@ -57,4 +59,15 @@ function playSound(key){
             console.log(key);
             break;
     }
+}
+
+//adding animation to the buttons
+
+function buttonAnimation(key){
+    const activeButton = document.querySelector('.'+ key);
+    
+    activeButton.classList.add('pressed');
+    setTimeout(()=>{
+        activeButton.classList.remove('pressed');
+    }, 100);
 }
